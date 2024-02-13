@@ -40,7 +40,7 @@ class _DummyPageState extends State<DummyPage> {
                   height: 500,child: Text("dgukadfkd")),
             ),
             SizedBox(height: 500,),
-            Opacity(opacity: isVisible?1.0:0.0,child: Text("Now it is visible"))
+            AnimatedOpacity(curve: Curves.bounceInOut,duration: Duration(seconds:50),opacity: isVisible?1.0:0.0,child: Text("Now it is visible"))
           ],
         ),
       )

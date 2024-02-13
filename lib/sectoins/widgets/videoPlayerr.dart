@@ -41,6 +41,7 @@ class _VideoPlayerrState extends State<VideoPlayerr> {
   Widget build(BuildContext context) {
 
     Size screenSzie = MediaQuery.of(context).size;
+    //for tablets and laptops
     if(screenSzie.width>600){
       return Container(
         decoration: BoxDecoration(
@@ -57,13 +58,26 @@ class _VideoPlayerrState extends State<VideoPlayerr> {
 
 
             children: [
-              Text("BotDExplorer",style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 35,
-                color: Colors.purple,
-                // color: Colors.white
-                // color: Colors.white
-              )),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("BotDExplorer",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                    color: Colors.purple,
+                    // color: Colors.white
+                    // color: Colors.white
+                  )),
+                  Container(
+                    // color: Colors.white,
+                    child: InkWell(
+                        onTap: (){
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.close,color: Colors.orange,size:30,)),
+                  ),
+                ],
+              ),
               SizedBox(height: 20,),
               //technologies useddd
               Container(
@@ -222,74 +236,80 @@ class _VideoPlayerrState extends State<VideoPlayerr> {
       );
     }
     // ===============================================================
+    // for mobile devices
     else{
-      return Container(
-        // height: 500,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("${widget.projectName}",style: TextStyle(
-                  fontWeight: FontWeight.bold,fontSize:30,color: Colors.purpleAccent,
-                )),
-                SizedBox(height: 20,),
-                Text("Technologies Used:-",style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 20,
-                ),),
-                SizedBox(height:10,),
-                Container(
-                  width: 250,
-                  height: 70,
-                  child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: widget.techUsed.length,itemBuilder: (context, index) {
-                    return Container(
-                      width:80,
-                      height: 50,
-                      child:widget.techUsed[index],
-                    );
-                  },),
-                ),
-                //timeline
+      return Scaffold(
+        body: Container(
+          // height: 500,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("${widget.projectName}",style: TextStyle(
+                    fontWeight: FontWeight.bold,fontSize:30,color: Colors.purpleAccent,
+                  )),
+                  SizedBox(height: 20,),
+                  Text("Technologies Used:-",style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 20,
+                  ),),
+                  SizedBox(height:10,),
+                  Container(
+                    width: 250,
+                    height: 70,
+                    child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: widget.techUsed.length,itemBuilder: (context, index) {
+                      return Row(
+                        children: [
+                          SizedBox(width: 20,),
+                          Container(
+                            width:40,
+                            height: 50,
+                            child:widget.techUsed[index],
+                          ),
+                          SizedBox(width: 20,),
+                        ],
+                      );
+                    },),
+                  ),
+                  //timeline
 
 
-                // Videoplayer
-                // Text("TimeLine:"),
-                // Container(
-                //   width: 250,
-                //   height: 500,
-                //   child:Column(
-                //     children: [
-                //       Row(
-                //         children: [
-                //
-                //           timelinetileMobile(TimelineAxis.horizontal,"kajdfbk", "date"),
-                //           timelinetileMobile(TimelineAxis.horizontal,"kajdfbk", "date"),
-                //           TimelineDivider(
-                //             begin: 0.1,
-                //             end: 0.9,
-                //             thickness: 6,
-                //             color: Colors.purple,
-                //           ),
-                //
-                //         ],
-                //
-                //       ),
-                //       timelinetileMobile(TimelineAxis.vertical,"kajdfbk", "date"),
-                //     ],
-                //   ) ,
-                //
-                // ),
-                SizedBox(height:10,),
-                Divider(),
-                Center(
-
-                  child: Column(
-
+                  // Videoplayer
+                  // Text("TimeLine:"),
+                  // Container(
+                  //   width: 250,
+                  //   height: 500,
+                  //   child:Column(
+                  //     children: [
+                  //       Row(
+                  //         children: [
+                  //
+                  //           timelinetileMobile(TimelineAxis.horizontal,"kajdfbk", "date"),
+                  //           timelinetileMobile(TimelineAxis.horizontal,"kajdfbk", "date"),
+                  //           TimelineDivider(
+                  //             begin: 0.1,
+                  //             end: 0.9,
+                  //             thickness: 6,
+                  //             color: Colors.purple,
+                  //           ),
+                  //
+                  //         ],
+                  //
+                  //       ),
+                  //       timelinetileMobile(TimelineAxis.vertical,"kajdfbk", "date"),
+                  //     ],
+                  //   ) ,
+                  //
+                  // ),
+                  SizedBox(height:10,),
+                  Divider(),
+                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-
+                  // Text("asdnds",style: TextStyle(fontWeight: FontWeight.bold,fontSize:16)),
                       Container(
                         margin: EdgeInsets.all(0),
                         height:400,
@@ -318,44 +338,44 @@ class _VideoPlayerrState extends State<VideoPlayerr> {
                       ),
                     ],
                   ),
-                ),
 
-                Text("Demo",style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.purple
-                ),),
+                  Text("Demo",style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.purple
+                  ),),
 
-                SizedBox(height: 10,),
+                  SizedBox(height: 10,),
 
-                Container(
-                  width:400,
-                  height: 600,
-                  // color: Colors.grey,
-                  child: VideoPlayer(v2),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height:20,),
-                    Divider(),
-                    Text("About App",style: TextStyle(
+                  Container(
+                    width:400,
+                    height: 600,
+                    // color: Colors.grey,
+                    child: VideoPlayer(v2),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height:20,),
+                      Divider(),
+                      Text("About App",style: TextStyle(
 
-                      fontWeight: FontWeight.bold,fontSize:20,color: Colors.purpleAccent,
+                        fontWeight: FontWeight.bold,fontSize:20,color: Colors.purpleAccent,
 
-                    )),
+                      )),
 
 
-                    Container(
-                      width: 300,
-                      height: 250,
-                      color: Colors.greenAccent,
-                    ),
-                    SizedBox(height:20,),
-                  ],
-                )
+                      Container(
+                        width: 300,
+                        height: 250,
+                        color: Colors.greenAccent,
+                      ),
+                      SizedBox(height:20,),
+                    ],
+                  )
 
-              ],
+                ],
+              ),
             ),
           ),
         ),
