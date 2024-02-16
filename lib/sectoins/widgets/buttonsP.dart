@@ -60,7 +60,7 @@ Widget projectUi(double imageheight, double width, double projectWidgetHeight,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(90),
                           topRight: Radius.circular(90)),
-                      child: Image.asset(fit: BoxFit.fitWidth, "${imgLink}")),
+                      child: Image.asset(fit: BoxFit.fitHeight, "${imgLink}")),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 50),
@@ -439,6 +439,7 @@ Widget AllProjects(BuildContext ctx) {
 
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               InkWell(
                   onTap: () {
                     // Navigator.push(ctx, MaterialPageRoute(builder: (context) => VideoPlayerr(projectName:"asdkn", ProjectInfo:"Analyze Effectively,Insightfully", techUsed:techUsed, timeLineDates:botExpTimeLine),));
@@ -460,30 +461,32 @@ Widget AllProjects(BuildContext ctx) {
                     // },);
                     // showProjectdia(ctx, hi);
                     // _scaleDialog(ctx, hi);
-                    Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:botIcon, videoLink: "botexp.mp4", projectName: "projectName", projectTagline: "projectTagline", techStack:techUsed, bulletPoints: botBullet, overView: botDExplorer),));
+                    Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:botIcon, videoLink:botVideo, projectName: "BotDEexplorer", projectTagline: "Analyze Effectively", techStack:techUsed, bulletPoints: botBullet, overView: botDExplorer),));
                   },
-                  child: projectUi(280, 400, 300, "BotDExplorer", "SubHeading",
+                  child: projectUi(280, 400, 300, "BotDExplorer", "Analyze Effectivley",
                       "assets/botD.jpg")),
               SizedBox(
                 width: 20,
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:photographyAppIcon, videoLink: "botexp.mp4", projectName: "PicShot", projectTagline: "projectTagline", techStack:picshottech, bulletPoints: botBullet, overView: botDExplorer),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiRickIcon, videoLink:digiRickVide, projectName: "DigiRickshaw", projectTagline: "projectTagline", techStack:digiRickshawTech, bulletPoints: dgiRickshawBullet, overView: digiRickshaw),));
                 },
-                child: projectUi(380, 400, 380, "PicShot", "SubHeading",
-                    "assets/photography.jpg"),
+                child: projectUi(380, 400, 380, "Digi Rickshaw", "Driving Companion",
+                    "assets/dp.jpg"),
               ),
+
               SizedBox(
                 width: 20,
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiCommunityIcon, videoLink: "botexp.mp4", projectName: "DigiCommunity", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:projectLocoIcon, videoLink:projectLocoVideo, projectName: "ProjectLoco", projectTagline: "projectTagline", techStack:projectLocotech, bulletPoints: projectLocoBullet, overView: projectLoco),));
                 },
-                child: projectUi(280, 400, 300, "DigiCommunity", "SubHeading",
-                    "assets/tution.jpg"),
+                child: projectUi(280, 400, 300, "ProjectLoco", "Optimal Crowd Distribution",
+                    "assets/headdetection.jpg"),
               ),
+
 
               //
             ],
@@ -498,11 +501,12 @@ Widget AllProjects(BuildContext ctx) {
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiParentsIcon, videoLink: "botexp.mp4", projectName: "DigiParents", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiParentsIcon, videoLink:digiParentVideo, projectName: "DigiParents", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
                 },
-                child: projectUi(280, 400, 300, "DigiParents", "SubHeading",
+                child: projectUi(280, 400, 300, "DigiParents", "Connecting Teachers & Students Digitally",
                     "assets/parents.jpg"),
               ),
               SizedBox(
@@ -510,11 +514,23 @@ Widget AllProjects(BuildContext ctx) {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:projectLocoIcon, videoLink: "botexp.mp4", projectName: "ProjectLoco", projectTagline: "projectTagline", techStack:projectLocotech, bulletPoints: projectLocoBullet, overView: projectLoco),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:photographyAppIcon, videoLink:photographyVideo, projectName: "PicShot", projectTagline: "Capture Moments", techStack:picshottech, bulletPoints: botBullet, overView: botDExplorer),));
                 },
-                child: projectUi(280, 400, 300, "ProjectLoco", "SubHeading",
-                    "assets/headdetection.jpg"),
+                child: projectUi(380, 400, 380, "PicShot", "Capture,Connect,Create",
+                    "assets/photography.jpg"),
               ),
+
+              SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: (){
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiCommunityIcon, videoLink: digiCommunityVideo, projectName: "DigiCommunity", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
+                },
+                child: projectUi(280, 400, 300, "DigiCommunity", "Fostering Connectivity in Tuition Education",
+                    "assets/tution.jpg"),
+              ),
+
             ],
           ),
         ),
@@ -541,11 +557,12 @@ Widget Upcoming(BuildContext ctx) {
 
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiCommunityIcon, videoLink: "botexp.mp4", projectName: "DigiCommunity", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiCommunityIcon, videoLink: digiCommunityVideo, projectName: "DigiCommunity", projectTagline: "projectTagline", techStack:digicommunitytech, bulletPoints: digiCommunityBullet, overView: digiCommunity),));
                 },
-                child: projectUi(280, 400, 300, "Digi Community", "SubHeading",
+                child: projectUi(280, 400, 300, "Digi Community", "TFostering Connectivity in Tuition Education",
                     "assets/tution.jpg"),
               ),
               SizedBox(
@@ -553,9 +570,9 @@ Widget Upcoming(BuildContext ctx) {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:photographyAppIcon, videoLink: "botexp.mp4", projectName: "PicShot", projectTagline: "projectTagline", techStack:picshottech, bulletPoints: botBullet, overView: botDExplorer),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:photographyAppIcon, videoLink:photographyVideo, projectName: "PicShot", projectTagline: "projectTagline", techStack:picshottech, bulletPoints: botBullet, overView: botDExplorer),));
                 },
-                child: projectUi(380, 400, 380, "PicShot", "SubHeading",
+                child: projectUi(380, 400, 380, "PicShot", "Capture,Connect,Create",
                     "assets/photography.jpg"),
               ),
               SizedBox(
@@ -592,9 +609,19 @@ Widget Latest(BuildContext ctx) {
             children: [
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiRickIcon, videoLink: "botexp.mp4", projectName: "DigiRickshaw", projectTagline: "projectTagline", techStack:digiRickshawTech, bulletPoints: dgiRickshawBullet, overView: digiRickshaw),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:digiRickIcon, videoLink:digiRickVide, projectName: "DigiRickshaw", projectTagline: "projectTagline", techStack:digiRickshawTech, bulletPoints: dgiRickshawBullet, overView: digiRickshaw),));
                 },
-                child: projectUi(280, 400, 300, "Digi Rickshaw", "SubHeading",
+                child: projectUi(280, 400, 300, "Digi Rickshaw", "Driving Companion",
+                    "assets/dp.jpg"),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              InkWell(
+                onTap: (){
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:botIcon, videoLink: botVideo, projectName: "BotDExplorer", projectTagline: "projectTagline", techStack:techUsed, bulletPoints: botBullet, overView: botDExplorer),));
+                },
+                child: projectUi(380, 400, 380, "BotDExplorer", "Analyze Effectively",
                     "assets/botD.jpg"),
               ),
               SizedBox(
@@ -602,19 +629,9 @@ Widget Latest(BuildContext ctx) {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:botIcon, videoLink: "botexp.mp4", projectName: "BotDExplorer", projectTagline: "projectTagline", techStack:techUsed, bulletPoints: botBullet, overView: botDExplorer),));
+                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:projectLocoIcon, videoLink: projectLocoVideo, projectName: "ProjectLoco", projectTagline: "projectTagline", techStack:projectLocotech, bulletPoints: projectLocoBullet, overView: projectLoco),));
                 },
-                child: projectUi(380, 400, 380, "BotDExplorer", "SubHeading",
-                    "assets/botD.jpg"),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              InkWell(
-                onTap: (){
-                  Navigator.push(ctx, SwipeablePageRoute(builder: (context) => ProjectLandingPage(iconLink:projectLocoIcon, videoLink: "botexp.mp4", projectName: "ProjectLoco", projectTagline: "projectTagline", techStack:projectLocotech, bulletPoints: projectLocoBullet, overView: projectLoco),));
-                },
-                child: projectUi(200, 400, 300, "Project Loco", "SubHeading",
+                child: projectUi(200, 400, 300, "Project Loco", "Smart Travel,Smarter Commutes",
                     "assets/headdetection.jpg"),
               ),
 
