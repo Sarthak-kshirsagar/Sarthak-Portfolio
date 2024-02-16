@@ -93,9 +93,9 @@ String photographyAppIcon = "assets/photography.jpg";
 
 //================video Links=====================
 
-String botVideo = "botexp.mp4";
-String digiCommunityVideo = "botexp.mp4";
-String digiRickVide = "botexp.mp4";
-String digiParentVideo = "botexp.mp4";
-String projectLocoVideo = "botexp.mp4";
-String photographyVideo = "botexp.mp4";
+String botVideo = "assets/botdvid.mp4";
+String digiCommunityVideo = "underProgress";
+String digiRickVide = "assets/digirickvid.mp4";
+String digiParentVideo = "assets/under3.mp4";
+String projectLocoVideo = "assets/projectLocoVid.mp4";
+String photographyVideo = "underProgress";

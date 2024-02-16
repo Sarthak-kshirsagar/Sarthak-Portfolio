@@ -17,6 +17,7 @@ import 'package:portfolio/sectoins/widgets/videoPlayerr.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
 import 'package:video_player/video_player.dart';
 import 'package:portfolio/sectoins/widgets/projectInfo.dart';
+import 'package:portfolio/sectoins/widgets/highlights.dart';
 //hi this is the dummydata
 void main() {
   return runApp(MaterialApp(
@@ -38,6 +39,12 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage>
     with SingleTickerProviderStateMixin {
   // Color c1 = Colors.red;
+  List<HighlightsImages>highLightDetails = [
+    HighlightsImages("assets/convocation.jpg","Convocation @GPP"),
+    HighlightsImages("assets/bluebit.jpg","BlueBit Hackathon"),
+    HighlightsImages("assets/iccuba.jpg","ICCUBEA Conference"),
+    HighlightsImages("assets/bb.jpg","PCCOE"),
+  ];
   ScrollController scroll1 = new ScrollController();
   double ht = 0;
   late TabController _tabController;
@@ -243,6 +250,27 @@ class _LandingPageState extends State<LandingPage>
         LatestProjects = Colors.grey;
         allProjects = Colors.grey;
         UpcomingProjects = Colors.purple;
+      });
+    }
+  }
+  bool contact = true;
+  bool highlights = false;
+  Color contactColor = Colors.purpleAccent;
+  Color hightlightsColor = Colors.white;
+  void showContactHiglights(bool b1,bool b2){
+    if(b1==true){
+      setState(() {
+        highlights=false;
+        contact=true;
+        contactColor = Colors.purpleAccent;
+         hightlightsColor = Colors.white;
+      });
+    }if(b2==true){
+      setState(() {
+        contact=false;
+        highlights=true;
+         contactColor = Colors.white;
+         hightlightsColor = Colors.purpleAccent;
       });
     }
   }
@@ -748,46 +776,30 @@ class _LandingPageState extends State<LandingPage>
                                               fontSize: 18,
                                             )),
                                       ),
-                                      Material(
-                                        color: Colors.transparent,
-                                        elevation: 20,
-                                        child: Container(
-                                            width: 400,
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: [
-                                                  Material(
-                                                    elevation: 20,
-                                                    child: Container(
-                                                      width: 350,
-                                                      height: 350,
-                                                      child: Image.asset(
-                                                          "assets/botD.jpg"),
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 15),
-                                                  Container(
-                                                      width: 350,
-                                                      height: 350,
-                                                      child: Image.asset(
-                                                          "assets/botD.jpg")),
-                                                  SizedBox(width: 15),
-                                                  Container(
-                                                      width: 350,
-                                                      height: 350,
-                                                      child: Image.asset(
-                                                          "assets/botD.jpg")),
-                                                  SizedBox(width: 15),
-                                                  Container(
-                                                      width: 350,
-                                                      height: 350,
-                                                      child: Image.asset(
-                                                          "assets/botD.jpg")),
-                                                ],
-                                              ),
-                                            )),
-                                      )
+                                      Container(
+                                          width: 400,
+                                          height:450 ,
+                                          child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: highLightDetails.length,itemBuilder: (context, index) {
+                                            return Row(
+                                              children: [
+                                                Container(
+
+
+                                                  child:Column(
+                                                  children: [
+                                                    Container(
+
+                                                        width: 330,height:380,child: Image.asset(fit: BoxFit.fitWidth,"${highLightDetails[index].imgUrl}")),
+                                                    SizedBox(height: 20,),
+                                                    Text("${highLightDetails[index].heading}",style: TextStyle(
+                                                      fontWeight: FontWeight.bold,fontSize: 18,
+                                                    ),)
+                                                  ],
+                                                ) ,),
+                                                SizedBox(width: 10,),
+                                              ],
+                                            );
+                                          },))
                                     ],
                                   )
                                 ],
@@ -1724,15 +1736,31 @@ class _LandingPageState extends State<LandingPage>
                                       responsiveProjectUi(
                                           context,
                                           ProjectLandingPage(
+                                              iconLink: digiParentsIcon,
+                                              videoLink: digiParentVideo,
+                                              overView: digiParents,
+                                              bulletPoints: digiParentsBullet,
+                                              techStack: digiPArents,
+                                              projectName: "Digi-Teachers",
+                                              projectTagline: "Connecting Teachers and Students Digitally"),
+                                          "Digi Community",
+                                          "Connecting Teachers and Students Digitally",
+                                          "assets/parents.jpg"),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      responsiveProjectUi(
+                                          context,
+                                          ProjectLandingPage(
                                               iconLink: digiCommunityIcon,
                                               videoLink: digiCommunityVideo,
                                               overView: digiCommunity,
                                               bulletPoints: digiCommunityBullet,
                                               techStack: digicommunitytech,
                                               projectName: "Digi-Community",
-                                              projectTagline: "Teaching Assistant"),
+                                              projectTagline: "Fostering Connectivity in Tuition Education"),
                                           "Digi Community",
-                                          "Your Teaching Assistant",
+                                          "Fostering Connectivity in Tuition Education",
                                           "assets/tution.jpg"),
                                       SizedBox(
                                         width: 20,
@@ -1878,9 +1906,9 @@ class _LandingPageState extends State<LandingPage>
                                               bulletPoints: digiCommunityBullet,
                                               techStack: digicommunitytech,
                                               projectName: "Digi-Community",
-                                              projectTagline: "Teaching Assistant"),
+                                              projectTagline: "Fostering Connectivity in Tuition Education"),
                                           "Digi Community",
-                                          "Your Teaching Assistant",
+                                          "Fostering Connectivity in Tuition Education",
                                           "assets/tution.jpg"),
                                      
                                       SizedBox(
@@ -3006,15 +3034,31 @@ class _LandingPageState extends State<LandingPage>
                                     responsiveProjectUi(
                                         context,
                                         ProjectLandingPage(
+                                            iconLink: digiParentsIcon,
+                                            videoLink: digiParentVideo,
+                                            overView: digiParents,
+                                            bulletPoints: digiParentsBullet,
+                                            techStack: digiPArents,
+                                            projectName: "DigiParents",
+                                            projectTagline: "Connecting Teachers and Students Digitally"),
+                                        "Digi Community",
+                                        "Connecting Teachers and Students Digitally",
+                                        "assets/parents.jpg"),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    responsiveProjectUi(
+                                        context,
+                                        ProjectLandingPage(
                                             iconLink: digiCommunityIcon,
                                             videoLink: digiCommunityVideo,
                                             overView: digiCommunity,
                                             bulletPoints: digiCommunityBullet,
                                             techStack: digicommunitytech,
                                             projectName: "Digi-Community",
-                                            projectTagline: "Teaching Assistant"),
-                                        "Digi Community",
-                                        "Teaching Assistant",
+                                            projectTagline: "Fostering Connectivity in Tuition Education"),
+                                        "Digi-Community",
+                                        "Fostering Connectivity in Tuition Education",
                                         "assets/tution.jpg"),
                                     SizedBox(
                                       width: 20,
@@ -3292,23 +3336,54 @@ class _LandingPageState extends State<LandingPage>
                   curve: Curves.linear,
                   child: Column(
                     children: [
-                      Text(
-                        "Contact",
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: 300,
+                        height: 40,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap:(){
+                                showContactHiglights(true, false);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(color:contactColor,width: 2))
+                                ),
+                                width: 100,
+                                child: Center(child: Text("Contact",style: TextStyle(
+                                  fontWeight: FontWeight.bold,fontSize: 15,
+                                ),)),
+                              ),
+                            ),
+                            InkWell(
+                              onTap:(){
+                                showContactHiglights(false, true);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border(bottom: BorderSide(color:hightlightsColor,width: 2))
+                                ),
+                                width: 100,
+                                child: Center(child: Text("Highlights",style: TextStyle(
+                                  fontWeight: FontWeight.bold,fontSize: 15,
+                                ),)),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
+                      if(contact==true)
                       Container(
                         child: Column(
                           children: [
                             Container(
                               width: MediaQuery.of(context).size.width,
                               height: 300,
-                              child: Image.asset("assets/photo.jpg"),
+                              child: Image.asset("assets/profPic.jpg"),
                             ),
                             Form(
                                 child: Column(
@@ -3353,13 +3428,46 @@ class _LandingPageState extends State<LandingPage>
                           ],
                         ),
                       ),
+                      if(highlights==true)
+                        SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 500,
+                                child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: highLightDetails.length,itemBuilder: (context, index) {
+                                  return Row(
+                                    children: [
+                                      Container(
+                                        width:250,
+                                        height: 380,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                                width:320,child: Image.asset("${highLightDetails[index].imgUrl}")),
+                                            SizedBox(width: 10,),
+                                            SizedBox(height:10),
+                                            Text("${highLightDetails[index].heading}",style: TextStyle(
+                                              fontWeight: FontWeight.bold,fontSize: 16,color: Colors.purpleAccent
+                                            )),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(width: 10,),
+                                    ],
+                                  );
+                                },),
+                            ),
+                          ),
+                        )
                     ],
                   ),
                 )
               ],
             ),
           ));
+
     }
+
   }
 
   Widget responsiveProjectUi(
@@ -3488,9 +3596,9 @@ class _LandingPageState extends State<LandingPage>
             Text(
               "Sarthak Kshirsagar",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w800,
                 fontSize: 25,
-                color: Colors.purpleAccent.shade200,
+                color: Colors.purpleAccent,
               ),
             ),
             SizedBox(

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:pod_player/pod_player.dart';
 import 'package:video_player/video_player.dart';
+
 
 class ProjectLandingPage extends StatefulWidget {
   String projectName;
@@ -24,6 +27,7 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
   Color demoBorder  = Colors.grey;
   bool isOverviewSelected = true;
   bool isDemoSelected = false;
+  // bool showImages = false;
 
   void makeOverViewBorder(){
     setState(() {
@@ -39,13 +43,53 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
 
     });
   }
+  bool showUnderProgressWidget = false;
+  List<String> digiImagesLink = ["assets/digiParents/dig1.jpg",
+    "assets/digiParents/dig2.jpg",
+    "assets/digiParents/dig3.jpg",
+    "assets/digiParents/dig4.jpg",
+    "assets/digiParents/dig5.jpg",
+    "assets/digiParents/dig6.jpg",
+    "assets/digiParents/dig7.jpg",
+    "assets/digiParents/dig8.jpg",
+    "assets/digiParents/dig9.jpg",
+    "assets/digiParents/dig10.jpg",
+    "assets/digiParents/dig11.jpg",
+    "assets/digiParents/dig12.jpg",
+    "assets/digiParents/dig13.jpg",
+    "assets/digiParents/dig14.jpg",
+    "assets/digiParents/dig15.jpg",
+    "assets/digiParents/dig16.jpg",
+    "assets/digiParents/dig17.jpg",
+  ];
+  bool isLoadingVideo = true;
   void makeDemoBorder(){
+
+    print("printing the link");
+    print("satus is ${showUnderProgressWidget}");
+    print(widget.videoLink);
     setState(() {
       overViewBorder = Colors.grey;
       demoBorder = Colors.purple;
     });
+    print("showing the status of the app ${showUnderProgressWidget}");
+    if (showUnderProgressWidget==false) {
+
+      print("enetered to assign the controlleer");
+      v2 = VideoPlayerController.asset(
+
+         "${widget.videoLink}"
+      )..initialize().then((_){
+        setState(() {
+          isLoadingVideo = false;
+          v2?.play();
+          print("now playing the content");
+        });
+      });
+    }
   }
-  late VideoPlayerController v2 ;
+    VideoPlayerController? v2 ;
+
   void setValues(){
     print("function called");
     print("name is ${widget.projectName}");
@@ -69,21 +113,35 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
       });
     }
   }
+
+  late final PodPlayerController controller;
+  void showUnderProgress(appStatus){
+    if(appStatus=="underProgress"){
+      setState(() {
+        showUnderProgressWidget = true;
+      });
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+  
+    showUnderProgress(widget.videoLink);
+
+    // controller = PodPlayerController(
+    //   playVideoFrom: PlayVideoFrom.asset('assets/botdvid.mp4'),
+    // )..initialise();
     setValues();
-    v2 = VideoPlayerController.asset(
-        "assets/botexp.mp4"
-    )..initialize().then((_){
-      setState(() {
-        v2.play();
-      });
-    });
+
 
     print("lendth is ");
     print(widget.techStack.length);
+  }
+  @override
+  void dispose(){
+    v2!.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -162,7 +220,7 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
                               child: SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SizedBox(width: 10,),
                                     Container(
@@ -299,8 +357,13 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
                                       color: Colors.transparent,
                                       child: InkWell(
                                         onTap: (){
-                                          makeDemoBorder();
+
                                           showTab(false,true);
+                                          if(widget.videoLink=="images"){
+                                            print("it is image");
+                                          }else{
+                                            makeDemoBorder();
+                                          }
                                         },
                                         child: Container(
                                           width: 120,
@@ -356,12 +419,68 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
                                   // bulletPoints("as,jabd,b"),
                                 ],
                               ),
-                            if(isDemoSelected==true)
+                            if(isDemoSelected==true && showUnderProgressWidget==false  && widget.projectName!="DigiParents")
                               Container(
                                 width:400,
                                 height: 600,
                                 // color: Colors.grey,
-                                child: VideoPlayer(v2),
+                                child: isLoadingVideo?Container(
+                                  width: 80,
+                                  height: 100,
+                                  child: Column(
+                                    children: [
+                                      Text("Loading",style: TextStyle(fontWeight: FontWeight.w800,color:Colors.green)),
+                                      SizedBox(height:10,),
+                                      SpinKitFadingFour(
+                                        color: Colors.purpleAccent,
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ):AspectRatio(
+
+                                    aspectRatio: v2!.value.aspectRatio,child: VideoPlayer(v2!)),
+                              ),
+                            if(isDemoSelected==true && showUnderProgressWidget==true && widget.projectName!="DigiParents")
+                              Container(
+                                width: 400,
+                                height: 400,
+                                child: Column(
+                                  children: [
+                                    Text("Under Progress",style: TextStyle(
+                                      fontWeight: FontWeight.bold,fontSize: 15
+                                    ),),
+                                    Image.asset("under3.gif"),
+
+                                  ],
+                                ),
+                              ),
+                            if(isDemoSelected==true && widget.projectName=="DigiParents")
+                              Column(
+                                children: [
+                                  Text("Screens",style: TextStyle(
+                                      fontWeight: FontWeight.bold,fontSize: 15,color: Colors.pinkAccent
+                                  )),
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Container(
+                                      width: 250,
+                                      height: 500,
+                                      child: ListView.builder(scrollDirection: Axis.horizontal,itemCount:digiImagesLink.length,itemBuilder: (context, index) {
+                                        return Row(
+                                          children: [
+                                            Container(
+                                              width: 220,
+                                              height: 450,
+                                              child: Image.asset("${digiImagesLink[index]}"),
+                                            ),
+                                            SizedBox(width: 12,),
+                                          ],
+                                        );
+                                      },),
+                                    ),
+                                  ),
+                                ],
                               ),
 
 
@@ -618,8 +737,13 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
                                         color: Colors.transparent,
                                         child: InkWell(
                                           onTap: (){
-                                            makeDemoBorder();
                                             showTab(false,true);
+                                            if(widget.videoLink=="images"){
+                                              print("it is image");
+                                            }else{
+                                              makeDemoBorder();
+                                            }
+
                                           },
                                           child: Container(
                                             width: 120,
@@ -652,9 +776,9 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
 
 
                                 Text("${widget.overView}")),
-                              if(isOverviewSelected==true)
+                              if(isOverviewSelected==true && widget.projectName!="DigiParents")
                                 SizedBox(height:10,),
-                              if(isOverviewSelected==true)
+                              if(isOverviewSelected==true && widget.projectName!="DigiParents")
                                 Align(
                                     alignment: Alignment.bottomLeft,child: Text("Responsibilites",style: TextStyle(fontWeight: FontWeight.bold,fontSize:18,color: Colors.black),))
                               ,
@@ -678,16 +802,66 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
                                     // bulletPoints("as,jabd,b"),
                                   ],
                                 ),
-                              if(isDemoSelected==true)
+                              if(isDemoSelected==true && showUnderProgressWidget==false && widget.projectName!="DigiParents")
                                 Container(
                                   width:400,
                                   height: 600,
                                   // color: Colors.grey,
-                                  child: VideoPlayer(v2),
+                                  child: isLoadingVideo?Column(
+                                    children: [
+                                      Text("Loading",style: TextStyle(fontWeight: FontWeight.w800,color:Colors.green),),
+                                      SizedBox(height:10,),
+                                      SpinKitFadingFour(
+                                        color: Colors.purpleAccent,
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ):AspectRatio(aspectRatio: v2!.value.aspectRatio,child: VideoPlayer(v2!))),
+
+                              if(isDemoSelected==true && showUnderProgressWidget==true)
+                                Container(
+                                  width: 400,
+                                  height: 400,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Under Progress",style: TextStyle(
+                                        fontWeight: FontWeight.bold,fontSize: 18,color: Colors.orange
+                                      )),
+                                      Image.asset("under3.gif"),
+                                    ],
+                                  ),
+                                ),
+                              if(isDemoSelected==true && widget.projectName=="DigiParents")
+                                Column(
+                                  children: [
+                                    Text("Screens",style: TextStyle(
+                                      fontWeight: FontWeight.bold,fontSize: 15,color: Colors.pinkAccent
+                                    )),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Container(
+                                        width: 250,
+                                        height: 500,
+                                        child: ListView.builder(scrollDirection: Axis.horizontal,itemCount:digiImagesLink.length,itemBuilder: (context, index) {
+                                          return Row(
+                                            children: [
+                                              Container(
+                                                width: 220,
+                                                height: 450,
+                                                child: Image.asset("${digiImagesLink[index]}"),
+                                              ),
+                                              SizedBox(width: 12,),
+                                            ],
+                                          );
+                                        },),
+                                      ),
+                                    ),
+                                  ],
                                 ),
 
 
-                            ],
+                                                                ],
                           ),
                         ),
                       ),
@@ -699,6 +873,7 @@ class _ProjectLandingPageState extends State<ProjectLandingPage> {
           ),
         ),
       );
+
     }
 
   }
